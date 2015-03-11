@@ -1,0 +1,18 @@
+<form action = <%= @cr.persisted? ? cat_rental_request_url(@cr) : cat_rental_requests_url %> method='POST'>
+  <label> Select Cat:
+    <select name="cat_rental_request[cat_id]">
+      <% ([Cat.new(name: "[Select A Cat]")] + Cat.all).each do |cat| %>
+        <option value=<%= cat.id %> <%= 'selected' if @cr.cat_id == cat.id %>>
+          <%= cat.name %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+  <label >Start Date
+    <input type="date" name="cat_rental_request[start_date]" value="<%= @cr.start_date %>">
+  </label>
+  <label >End Date
+    <input type="date" name="cat_rental_request[end_date]" value="<%= @cr.end_date %>">
+  </label>
+  <input type="submit" name="name" value="<%= action %>">
+</form>
